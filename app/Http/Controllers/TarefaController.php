@@ -9,7 +9,7 @@ class TarefaController extends Controller
 {
     public function index() {
         $tarefas = Tarefa::orderBy('ordem')->get();
-        return view('tarefas.index', compact('tarefas'));
+        return view('components.index', compact('tarefas'));
     }
 
     public function store(Request $request) {
