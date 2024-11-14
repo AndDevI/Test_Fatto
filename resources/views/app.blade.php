@@ -13,5 +13,7 @@
         <div class="container mx-auto">
             @yield('content')
         </div>
+        
+        <script src="{{ asset('js/Modal.js') }}"></script>  
     </body>
 </html>

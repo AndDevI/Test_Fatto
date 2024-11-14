@@ -5,9 +5,13 @@
     <h1 class="text-2xl font-bold mb-6">Lista de Tarefas</h1>
 
     <div class="mb-4">
-        <a href="{{ route('tarefas.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button onclick="openModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Incluir Nova Tarefa
-        </a>
+        </button>
+    </div>
+
+    <div id="modal" class="hidden">
+        @include('components.create')
     </div>
 
     <table class="min-w-full bg-white">
