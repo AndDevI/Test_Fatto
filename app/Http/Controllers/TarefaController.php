@@ -26,7 +26,7 @@ class TarefaController extends Controller
             'ordem' => Tarefa::max('ordem') + 1,
         ]);
 
-        return redirect()->route('tarefas.index');
+        return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
     public function update(Request $request, Tarefa $tarefa) {

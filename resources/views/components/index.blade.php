@@ -4,13 +4,19 @@
 <div class="container mx-auto py-8">
     <h1 class="text-2xl font-bold mb-6">Lista de Tarefas</h1>
 
+    @if(session('success'))
+        <div id="successMessage" class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 mb-4 text-green-700 bg-green-100 rounded shadow-lg transition-opacity duration-500 opacity-0">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="mb-4">
         <button onclick="openModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Incluir Nova Tarefa
         </button>
     </div>
 
-    <div id="modal" class="opacity-0  transition-opacity duration-300 hidden">
+    <div id="modal" class="opacity-0 transition-opacity duration-300 hidden">
         @include('components.create')
     </div>
 
