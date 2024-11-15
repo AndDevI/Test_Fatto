@@ -29,19 +29,24 @@ class TarefaController extends Controller
         return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
-    public function update(Request $request, Tarefa $tarefa) {
+    public function update(Request $request, $id) {
         $request->validate([
-            'nome' => 'required|unique:tarefas,nome,' . $tarefa->id . '|max:255',
+            'nome' => 'required|unique:tarefas,nome,' . $id . '|max:255',
             'custo' => 'required|numeric',
             'data_limite' => 'required|date',
         ]);
+
+        $tarefa = Tarefa::findOrFail($id);
         
         $tarefa->update([
             'nome' => $request->nome,
             'custo' => $request->custo,
             'data_limite' => $request->data_limite,
         ]);
+
+        return redirect()->route('tarefas.index')->with('success', 'Tarefa atualizada com sucesso!');
     }
+
 
     public function destroy(Tarefa $tarefa) {
         $tarefa->delete();

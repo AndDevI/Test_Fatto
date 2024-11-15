@@ -20,6 +20,10 @@
         @include('components.create')
     </div>
 
+    <div id="edit_modal" class="opacity-0 transition-opacity duration-300 hidden">
+        @include('components.edit')
+    </div>
+
     <table class="min-w-full bg-white">
         <thead class="bg-gray-800 text-white">
             <tr>
@@ -36,7 +40,12 @@
                     <td class="border px-4 py-2">R$ {{ number_format($tarefa->custo, 2, ',', '.') }}</td>
                     <td class="border px-4 py-2">{{ $tarefa->data_limite }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('tarefas.edit', $tarefa->id) }}" class="text-blue-500 hover:underline">Editar</a>
+                        <a 
+                            href="javascript:void(0);" 
+                            onclick="openEditModal({{ $tarefa->id }}, '{{ $tarefa->nome }}', {{ $tarefa->custo }}, '{{ $tarefa->data_limite }}')"
+                            class="text-blue-500 hover:underline">
+                            Editar
+                        </a>
                         <form action="{{ route('tarefas.destroy', $tarefa->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')

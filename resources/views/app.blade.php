@@ -15,6 +15,7 @@
         </div>
         
         <script src="{{ asset('js/Modal.js') }}"></script>
+        <script src="{{ asset('js/EditModal.js') }}"></script>
         <script src="{{ asset('js/Success.js') }}"></script>    
     </body>
 </html>
