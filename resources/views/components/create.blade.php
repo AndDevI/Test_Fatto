@@ -10,15 +10,15 @@
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium">Nome da Tarefa</label>
-                <input type="text" name="name" id="name" class="w-full border rounded px-3 py-2 mt-1" required>
+                <input type="text" name="nome" id="nome" class="w-full border rounded px-3 py-2 mt-1" required>
             </div>
             <div class="mb-4">
                 <label for="cost" class="block text-sm font-medium">Custo (R$)</label>
-                <input type="number" name="cost" id="cost" class="w-full border rounded px-3 py-2 mt-1" required>
+                <input type="number" name="custo" id="custo" class="w-full border rounded px-3 py-2 mt-1" required>
             </div>
             <div class="mb-4">
                 <label for="deadline" class="block text-sm font-medium">Data Limite</label>
-                <input type="date" name="deadline" id="deadline" class="w-full border rounded px-3 py-2 mt-1" required>
+                <input type="date" name="data_limite" id="data_limite" class="w-full border rounded px-3 py-2 mt-1" required>
             </div>
             
             <div class="flex justify-end">
