@@ -48,8 +48,10 @@ class TarefaController extends Controller
     }
 
 
-    public function destroy(Tarefa $tarefa) {
+    public function destroy($id) {
+        $tarefa = Tarefa::findOrFail($id);
         $tarefa->delete();
-        return redirect()->route('tarefas.index');
+
+        return redirect()->route('tarefas.index')->with('success', 'Tarefa excluída com sucesso!');
     }
 }
