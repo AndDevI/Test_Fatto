@@ -1,7 +1,15 @@
 function openModal() {
-     document.getElementById('modal').classList.remove('hidden');
+    const modal = document.getElementById('modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0'); 
+    }, 10); 
 }
 
 function closeModal() {
-    document.getElementById('modal').classList.add('hidden');
+    const modal = document.getElementById('modal');
+    modal.classList.add('opacity-0'); 
+    setTimeout(() => {
+        modal.classList.add('hidden'); 
+    }, 300); 
 }

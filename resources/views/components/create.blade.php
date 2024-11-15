@@ -1,6 +1,10 @@
 <div class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
     <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
-        <h2 class="text-lg font-semibold mb-4">Criar Nova Tarefa</h2>
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold">Criar Nova Tarefa</h2>
+            <button type="button" onclick="closeModal()" class="text-red-500"><x-tabler-x /></button>
+        </div>
+        
         
         <form id="createTaskForm" action="{{ route('tarefas.store') }}" method="POST">
             @csrf
@@ -18,7 +22,6 @@
             </div>
             
             <div class="flex justify-end">
-                <button type="button" onclick="closeModal()" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded">Cancelar</button>
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Salvar</button>
             </div>
         </form>

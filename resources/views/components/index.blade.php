@@ -10,7 +10,7 @@
         </button>
     </div>
 
-    <div id="modal" class="hidden">
+    <div id="modal" class="opacity-0  transition-opacity duration-300 hidden">
         @include('components.create')
     </div>
 
