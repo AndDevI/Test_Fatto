@@ -38,7 +38,7 @@
                 <tr class="{{ $tarefa->custo >= 1000 ? 'bg-yellow-200' : '' }}">
                     <td class="border px-4 py-2">{{ $tarefa->nome }}</td>
                     <td class="border px-4 py-2">R$ {{ number_format($tarefa->custo, 2, ',', '.') }}</td>
-                    <td class="border px-4 py-2">{{ $tarefa->data_limite }}</td>
+                    <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($tarefa->data_limite)->format('d/m/Y') }}</td>
                     <td class="border px-4 py-2">
                         <a 
                             href="javascript:void(0);" 
