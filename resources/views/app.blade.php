@@ -14,6 +14,7 @@
             @yield('content')
         </div>
         
-        <script src="{{ asset('js/Modal.js') }}"></script>  
+        <script src="{{ asset('js/Modal.js') }}"></script>
+        <script src="{{ asset('js/Success.js') }}"></script>    
     </body>
 </html>
