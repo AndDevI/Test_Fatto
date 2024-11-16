@@ -54,4 +54,17 @@ class TarefaController extends Controller
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa excluída com sucesso!');
     }
+
+    public function reorder(Request $request) {
+        $order = $request->input('order');
+
+        foreach ($order as $index => $id) {
+            $tarefa = Tarefa::find($id);
+            $tarefa->ordem = $index + 1;
+            $tarefa->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
 }

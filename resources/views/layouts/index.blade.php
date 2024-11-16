@@ -24,7 +24,7 @@
         @include('components.edit')
     </div>
 
-    <table class="min-w-full bg-white">
+    <table id="sortable" class="min-w-full bg-white">
         <thead class="bg-gray-800 text-white">
             <tr>
                 <th class="w-1/3 py-2">Nome da Tarefa</th>
@@ -33,9 +33,9 @@
                 <th class="w-1/4 py-2">Ações</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tarefa_lista">
             @foreach ($tarefas as $tarefa)
-                <tr class="{{ $tarefa->custo >= 1000 ? 'bg-yellow-200' : '' }}">
+                <tr data-id="{{ $tarefa->id }}" class="tarefa {{ $tarefa->custo >= 1000 ? 'bg-yellow-200' : '' }}">
                     <td class="border px-4 py-2">{{ $tarefa->nome }}</td>
                     <td class="border px-4 py-2">R$ {{ number_format($tarefa->custo, 2, ',', '.') }}</td>
                     <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($tarefa->data_limite)->format('d/m/Y') }}</td>
@@ -57,4 +57,31 @@
         </tbody>
     </table>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script>
+    const tabela = document.getElementById('sortable'); 
+
+    new Sortable(tabela.querySelector('tbody'), {
+        animation: 150, 
+        handle: 'tr', 
+        ghostClass: 'sortable-ghost', 
+        onEnd: function (evt) {
+            const orderedIds = [];
+            tabela.querySelectorAll('tbody tr.tarefa').forEach((linha) => {
+                orderedIds.push(linha.dataset.id);
+            });
+
+            fetch('{{ route('tarefas.reorder') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({ order: orderedIds }),
+            })
+            .then((response) => response.json())
+        },
+    });
+</script>
 @endsection

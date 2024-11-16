@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nome')->unique();
             $table->decimal('custo', 10, 2);
             $table->date('data_limite');
-            $table->integer('ordem')->unique();
+            $table->integer('ordem');
             $table->timestamps();
         });
     }
