@@ -1,5 +1,6 @@
+const modal = document.getElementById('modal');
+
 function openModal() {
-    const modal = document.getElementById('modal');
     modal.classList.remove('hidden');
     setTimeout(() => {
         modal.classList.remove('opacity-0'); 
@@ -7,7 +8,6 @@ function openModal() {
 }
 
 function closeModal() {
-    const modal = document.getElementById('modal');
     modal.classList.add('opacity-0'); 
     setTimeout(() => {
         modal.classList.add('hidden'); 
