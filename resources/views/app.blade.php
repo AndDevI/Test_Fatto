@@ -9,7 +9,7 @@
         
         <title>Teste Fatto</title>
     </head>
-    <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <body class="bg-white font-sans leading-normal tracking-normal">
         <div class="container mx-auto">
             @yield('content')
         </div>

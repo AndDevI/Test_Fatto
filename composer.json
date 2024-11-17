@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "codeat3/blade-ikonate": "^1.5",
+        "codeat3/blade-system-uicons": "^1.7",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "ryangjchandler/blade-tabler-icons": "^2.3"
