@@ -17,6 +17,8 @@ class TarefaController extends Controller
             'nome' => 'required|unique:tarefas|max:255',
             'custo' => 'required|numeric',
             'data_limite' => 'required|date',
+        ], [
+            'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',
         ]);
 
         $tarefa = Tarefa::create([
@@ -29,15 +31,18 @@ class TarefaController extends Controller
         return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
+
     public function update(Request $request, $id) {
         $request->validate([
-            'nome' => 'required|unique:tarefas,nome,' . $id . '|max:255',
+            'nome' => 'required|unique:tarefas,nome,' . $id . '|max:255', 
             'custo' => 'required|numeric',
             'data_limite' => 'required|date',
+        ], [
+            'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',
         ]);
 
         $tarefa = Tarefa::findOrFail($id);
-        
+
         $tarefa->update([
             'nome' => $request->nome,
             'custo' => $request->custo,
@@ -46,6 +51,7 @@ class TarefaController extends Controller
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa atualizada com sucesso!');
     }
+
 
 
     public function destroy($id) {

@@ -10,6 +10,16 @@
         </div>
     @endif
 
+    @if ($errors->any())
+        <div id="errorMessage" class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 mb-4 text-red-700 bg-red-100 rounded shadow-lg transition-opacity duration-500 opacity-0">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="fixed bottom-16 right-16">
         <button 
             onclick="openModal()" 
