@@ -15,7 +15,7 @@ class TarefaController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nome' => 'required|unique:tarefas|max:255',
-            'custo' => 'required|numeric',
+            'custo' => 'required|numeric|min:0.01',
             'data_limite' => 'required|date',
         ], [
             'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',
@@ -35,7 +35,7 @@ class TarefaController extends Controller
     public function update(Request $request, $id) {
         $request->validate([
             'nome' => 'required|unique:tarefas,nome,' . $id . '|max:255', 
-            'custo' => 'required|numeric',
+            'custo' => 'required|numeric|min:0.01',
             'data_limite' => 'required|date',
         ], [
             'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',

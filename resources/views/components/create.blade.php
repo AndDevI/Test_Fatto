@@ -15,7 +15,7 @@
             </div>
             <div class="mb-6">
                 <label for="custo" class="block text-sm font-medium text-gray-700">Custo (R$)</label>
-                <input type="number" name="custo" id="custo" class="w-full border-2 border-gray-300 rounded-lg px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" required>
+                <input min="0.01" step="0.01" type="number" name="custo" id="custo" class="w-full border-2 border-gray-300 rounded-lg px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" required>
             </div>
             <div class="mb-6">
                 <label for="data_limite" class="block text-sm font-medium text-gray-700">Data Limite</label>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto py-8 bg-white">
-    <h1 class="text-3xl font-bold mb-6 text-center">Lista de Tarefas</h1>
+    <h1 class="text-3xl font-bold mb-6">Lista de Tarefas</h1>
 
     @if(session('success'))
         <div id="successMessage" class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 mb-4 text-green-700 bg-green-100 rounded shadow-lg transition-opacity duration-500 opacity-0">
@@ -36,6 +36,10 @@
         @include('components.edit')
     </div>
 
+    <div id="delete_modal" class="opacity-0 transition-opacity duration-300 hidden">
+        @include('components.delete')
+    </div>
+
     <table id="sortable" class="min-w-full border-separate border-spacing-y-3 bg-gray-200 rounded-xl text-center shadow-2xl p-5">
         <thead class="bg-slate-800/70 text-white rounded-lg">
             <tr>
@@ -62,9 +66,9 @@
                             @csrf
                             @method('DELETE')
                             <button 
-                                type="submit" 
-                                class="text-red-500 h-8 w-8 hover:text-red-700 transition-colors" 
-                                onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                                type="button" 
+                                onclick="openDeleteModal('{{ route('tarefas.destroy', $tarefa->id) }}')" 
+                                class="text-red-500 h-8 w-8 hover:text-red-700 transition-colors">
                                 <x-ik-bin />
                             </button>
                         </form>
