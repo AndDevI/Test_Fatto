@@ -16,7 +16,7 @@ class TarefaController extends Controller
         $request->validate([
             'nome' => 'required|unique:tarefas|max:255',
             'custo' => 'required|numeric|min:0.01',
-            'data_limite' => 'required|date',
+            'data_limite' => 'required|date|date_format:Y-m-d',
         ], [
             'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',
         ]);
