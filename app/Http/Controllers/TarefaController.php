@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TarefaRequest;
+use App\Http\Requests\UpdateTarefaRequest;
 use App\Models\Tarefa;
-use Illuminate\Http\Request;
 
 class TarefaController extends Controller
 {
@@ -25,7 +25,7 @@ class TarefaController extends Controller
     }
 
 
-    public function update(TarefaRequest $request, $id) {
+    public function update(UpdateTarefaRequest $request, $id) {
         $tarefa = Tarefa::findOrFail($id);
 
         $tarefa->update([
