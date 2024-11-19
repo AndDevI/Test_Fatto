@@ -13,6 +13,7 @@ class TarefaController extends Controller
         return view('layouts.index', compact('tarefas'));
     }
 
+    
     public function store(TarefaRequest $request) {
         $tarefaExistente = Tarefa::where('nome', $request->nome)->first();
 
@@ -29,7 +30,6 @@ class TarefaController extends Controller
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
-
 
 
     public function update(UpdateTarefaRequest $request, $id) {
@@ -49,14 +49,13 @@ class TarefaController extends Controller
     }
 
 
-
-
     public function destroy($id) {
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->delete();
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa excluída com sucesso!');
     }
+
 
     public function reorder(TarefaRequest $request) {
         $order = $request->input('order');
