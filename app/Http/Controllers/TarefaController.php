@@ -14,19 +14,30 @@ class TarefaController extends Controller
     }
 
     public function store(TarefaRequest $request) {
+        $tarefaExistente = Tarefa::where('nome', $request->nome)->first();
+
+        if ($tarefaExistente) {
+            return redirect()->route('tarefas.index');
+        }
+
         $tarefa = Tarefa::create([
             'nome' => $request->nome,
             'custo' => $request->custo,
             'data_limite' => $request->data_limite,
-            'ordem' => Tarefa::max('ordem') + 1,
+            'ordem' => Tarefa::max('ordem') + 1, 
         ]);
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
 
+
     public function update(UpdateTarefaRequest $request, $id) {
         $tarefa = Tarefa::findOrFail($id);
+
+        if (Tarefa::where('nome', $request->nome)->where('id', '!=', $id)->exists()) {
+            return redirect()->route('tarefas.index');
+        }
 
         $tarefa->update([
             'nome' => $request->nome,
@@ -36,6 +47,7 @@ class TarefaController extends Controller
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa atualizada com sucesso!');
     }
+
 
 
 
