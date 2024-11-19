@@ -40,43 +40,45 @@
         @include('components.delete')
     </div>
 
-    <table id="sortable" class="min-w-full border-separate border-spacing-y-3 bg-gray-200 rounded-xl text-center shadow-2xl p-5">
-        <thead class="bg-slate-800/70 text-white rounded-lg">
-            <tr>
-                <th class="w-1/3 py-3 px-4 border-b border-gray-300">Nome da Tarefa</th>
-                <th class="w-1/4 py-3 px-4 border-b border-gray-300">Custo (R$)</th>
-                <th class="w-1/4 py-3 px-4 border-b border-gray-300">Data Limite</th>
-                <th class="w-1/4 py-3 px-4 border-b border-gray-300">Ações</th>
-            </tr>
-        </thead>
-        <tbody id="tarefa_lista">
-            @foreach ($tarefas as $tarefa)
-                <tr data-id="{{ $tarefa->id }}" class="tarefa bg-gray-100 hover:bg-slate-100 transition-all duration-300 {{ $tarefa->custo >= 1000 ? 'text-yellow-500' : 'text-black' }} text-lg rounded-lg shadow-sm hover:shadow-lg">
-                    <td class="px-6 py-4 border-b border-gray-200">{{ $tarefa->nome }}</td>
-                    <td class="px-6 py-4 border-b border-gray-200">R$ {{ number_format($tarefa->custo, 2, ',', '.') }}</td>
-                    <td class="px-6 py-4 border-b border-gray-200">{{ \Carbon\Carbon::parse($tarefa->data_limite)->format('d/m/Y') }}</td>
-                    <td class="px-6 py-4 flex justify-center items-center space-x-3 border-b border-gray-200">
-                        <button 
-                            href="javascript:void(0);" 
-                            onclick="openEditModal({{ $tarefa->id }}, '{{ $tarefa->nome }}', {{ $tarefa->custo }}, '{{ $tarefa->data_limite }}')"
-                            class="text-blue-500 h-8 w-8 hover:text-blue-700 transition-colors">
-                            <x-sui-pen />
-                        </button>
-                        <form action="{{ route('tarefas.destroy', $tarefa->id) }}" method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button 
-                                type="button" 
-                                onclick="openDeleteModal('{{ route('tarefas.destroy', $tarefa->id) }}')" 
-                                class="text-red-500 h-8 w-8 hover:text-red-700 transition-colors">
-                                <x-ik-bin />
-                            </button>
-                        </form>
-                    </td>
+    <div class="overflow-x-auto">
+        <table id="sortable" class="min-w-full border-separate border-spacing-y-3 bg-gray-200 rounded-xl text-center shadow-2xl p-5">
+            <thead class="bg-slate-800/70 text-white rounded-lg">
+                <tr>
+                    <th class="w-1/3 py-3 px-4 border-b border-gray-300 text-xs sm:text-sm">Nome da Tarefa</th>
+                    <th class="w-1/4 py-3 px-4 border-b border-gray-300 text-xs sm:text-sm">Custo (R$)</th>
+                    <th class="w-1/4 py-3 px-4 border-b border-gray-300 text-xs sm:text-sm">Data Limite</th>
+                    <th class="w-1/4 py-3 px-4 border-b border-gray-300 text-xs sm:text-sm">Ações</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="tarefa_lista">
+                @foreach ($tarefas as $tarefa)
+                    <tr data-id="{{ $tarefa->id }}" class="tarefa bg-gray-100 hover:bg-slate-100 transition-all duration-300 {{ $tarefa->custo >= 1000 ? 'text-yellow-500' : 'text-black' }} text-sm sm:text-lg rounded-lg shadow-sm hover:shadow-lg">
+                        <td class="px-6 py-4 border-b border-gray-200">{{ $tarefa->nome }}</td>
+                        <td class="px-6 py-4 border-b border-gray-200">R$ {{ number_format($tarefa->custo, 2, ',', '.') }}</td>
+                        <td class="px-6 py-4 border-b border-gray-200">{{ \Carbon\Carbon::parse($tarefa->data_limite)->format('d/m/Y') }}</td>
+                        <td class="px-6 py-4 flex justify-center items-center space-x-3 border-b border-gray-200">
+                            <button 
+                                href="javascript:void(0);" 
+                                onclick="openEditModal({{ $tarefa->id }}, '{{ $tarefa->nome }}', {{ $tarefa->custo }}, '{{ $tarefa->data_limite }}')"
+                                class="text-blue-500 h-8 w-8 hover:text-blue-700 transition-colors">
+                                <x-sui-pen />
+                            </button>
+                            <form action="{{ route('tarefas.destroy', $tarefa->id) }}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button 
+                                    type="button" 
+                                    onclick="openDeleteModal('{{ route('tarefas.destroy', $tarefa->id) }}')" 
+                                    class="text-red-500 h-8 w-8 hover:text-red-700 transition-colors">
+                                    <x-ik-bin />
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
