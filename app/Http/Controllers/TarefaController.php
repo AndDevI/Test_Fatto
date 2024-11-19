@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TarefaRequest;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
 
@@ -12,15 +13,7 @@ class TarefaController extends Controller
         return view('layouts.index', compact('tarefas'));
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'nome' => 'required|unique:tarefas|max:255',
-            'custo' => 'required|numeric|min:0.01',
-            'data_limite' => 'required|date|date_format:Y-m-d',
-        ], [
-            'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',
-        ]);
-
+    public function store(TarefaRequest $request) {
         $tarefa = Tarefa::create([
             'nome' => $request->nome,
             'custo' => $request->custo,
@@ -32,15 +25,7 @@ class TarefaController extends Controller
     }
 
 
-    public function update(Request $request, $id) {
-        $request->validate([
-            'nome' => 'required|unique:tarefas,nome,' . $id . '|max:255', 
-            'custo' => 'required|numeric|min:0.01',
-            'data_limite' => 'required|date',
-        ], [
-            'nome.unique' => 'Já existe uma tarefa com esse nome. Escolha outro nome.',
-        ]);
-
+    public function update(TarefaRequest $request, $id) {
         $tarefa = Tarefa::findOrFail($id);
 
         $tarefa->update([
@@ -61,7 +46,7 @@ class TarefaController extends Controller
         return redirect()->route('tarefas.index')->with('success', 'Tarefa excluída com sucesso!');
     }
 
-    public function reorder(Request $request) {
+    public function reorder(TarefaRequest $request) {
         $order = $request->input('order');
 
         foreach ($order as $index => $id) {
