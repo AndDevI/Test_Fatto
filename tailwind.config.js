@@ -14,6 +14,15 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                highlight: {
+                    '0%': { backgroundColor: '#d1fae5' }, 
+                    '100%': { backgroundColor: 'transparent' },
+                },
+            },
+            animation: {
+                highlight: 'highlight 2s ease-in-out forwards',
+            },
         },
     },
     plugins: [],

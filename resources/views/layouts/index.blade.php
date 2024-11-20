@@ -52,7 +52,11 @@
             </thead>
             <tbody id="tarefa_lista">
                 @foreach ($tarefas as $tarefa)
-                    <tr data-id="{{ $tarefa->id }}" class="tarefa bg-gray-100 hover:bg-slate-100 transition-all duration-300 {{ $tarefa->custo >= 1000 ? 'text-yellow-500' : 'text-black' }} text-sm sm:text-lg rounded-lg shadow-sm hover:shadow-lg">
+                    <tr data-id="{{ $tarefa->id }}" 
+                        class="tarefa bg-gray-100 hover:bg-slate-100 transition-all duration-300 text-sm sm:text-lg rounded-lg shadow-sm hover:shadow-lg 
+                                {{ $tarefa->custo >= 1000 ? 'text-yellow-500' : 'text-black' }} 
+                                {{ session('nova_tarefa_id') == $tarefa->id ? 'animate-highlight' : '' }}
+                                 ">
                         <td class="px-6 py-4 border-b border-gray-200">{{ $tarefa->nome }}</td>
                         <td class="px-6 py-4 border-b border-gray-200">R$ {{ number_format($tarefa->custo, 2, ',', '.') }}</td>
                         <td class="px-6 py-4 border-b border-gray-200">{{ \Carbon\Carbon::parse($tarefa->data_limite)->format('d/m/Y') }}</td>

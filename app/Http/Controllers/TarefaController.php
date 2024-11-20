@@ -28,7 +28,10 @@ class TarefaController extends Controller
             'ordem' => Tarefa::max('ordem') + 1, 
         ]);
 
-        return redirect()->route('tarefas.index')->with('success', 'Tarefa criada com sucesso!');
+        return redirect()->route('tarefas.index')->with([
+            'success' => 'Tarefa criada com sucesso!',
+            'nova_tarefa_id' => $tarefa->id,
+        ]);
     }
 
 
