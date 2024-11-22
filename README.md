@@ -1,66 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gerenciador de Tarefas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto é um **Gerenciador de Tarefas** desenvolvido com **Laravel** e estilizado com **TailwindCSS**. Ele permite criar, editar, excluir e listar tarefas em uma interface simples e intuitiva. Além disso, oferece funcionalidades como reordenamento de tarefas via drag-and-drop e destaque para novas tarefas criadas.
 
-## About Laravel
+## Funcionalidades
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Listar Tarefas**: Exibe as tarefas em uma tabela com informações detalhadas.
+- **Adicionar Tarefa**: Permite criar novas tarefas e destacá-las temporariamente na lista.
+- **Editar Tarefa**: Possibilita a edição de informações de tarefas existentes.
+- **Excluir Tarefa**: Exclui tarefas de forma prática.
+- **Reordenamento de Tarefas**: As tarefas podem ser reordenadas arrastando e soltando na lista.
+- **Destaque de Novas Tarefas**: A nova tarefa criada recebe um destaque visual temporário.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Pré-requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Antes de iniciar, você precisa ter as seguintes ferramentas instaladas:
 
-## Learning Laravel
+- [PHP](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Além disso, é necessário configurar um banco de dados MySQL.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Instalação
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Instale as dependências do Laravel:
+   ```bash
+   composer install
+   ```
+2. Instale as dependências do front-end:
+   ```bash
+   npm install
+   ```
+3. Configure o arquivo .env:
+  ```bash
+   cp .env.example .env
+   ```
+4. Gere a chave da aplicação:
+  ```bash
+   php artisan key:generate
+   ```
+5. Execute as migrações do banco de dados:
+  ```bash
+   php artisan migrate
+   ```
 
-## Laravel Sponsors
+## Como usar
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Compile os assets do front-end:
+  ```bash
+   npm run dev
+   ```
+2. Inicie o servidor de desenvolvimento:
+  ```bash
+   php artisan serve
+   ```
+3. Acesse o projeto no navegador:
+  ```bash
+   http://127.0.0.1:8000
+   ```
+4. Navegue pelas funcionalidades:
+- Para adicionar uma nova tarefa, clique no botão "+" no canto inferior direito.
+- Para editar ou excluir, utilize os botões correspondentes na tabela de tarefas.
 
-### Premium Partners
+## Recursos Avançados
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Reordenamento de Tarefas
+As tarefas podem ser reordenadas arrastando e soltando diretamente na lista. Após soltar, a nova ordem é automaticamente salva no banco de dados.
 
-## Contributing
+# Destaque de Novas Tarefas
+Quando uma nova tarefa é criada, ela recebe uma animação temporária para ser facilmente identificada na lista.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Rolagem Automática para Novas Tarefas
+Após a criação de uma nova tarefa, a tabela rola automaticamente para que a nova tarefa esteja visível.
 
-## Code of Conduct
+## Estrutura de Diretórios
+- **app/Http/Controllers:** Controladores responsáveis pelas requisições HTTP.
+- **resources/views:** Arquivos Blade para renderização das páginas.
+- **public/css:** Arquivos de estilos gerados pelo TailwindCSS.
+- **routes/web.php:** Define as rotas da aplicação.
+- **database/migrations:** Arquivos de migração para criação das tabelas.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Tecnologias Utilizadas
+**Laravel:** Framework PHP para back-end.
+**TailwindCSS:** Framework de CSS utilitário para estilização.
+**SortableJS:** Biblioteca para reordenamento de elementos via drag-and-drop.
+**JavaScript:** Para interações e efeitos visuais.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Coded by <a href="[#](https://github.com/AndDevI)">Andrew Raphael</a>.
