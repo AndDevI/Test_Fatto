@@ -93,6 +93,8 @@
         animation: 150, 
         handle: 'tr', 
         ghostClass: 'sortable-ghost', 
+        delay: 200, 
+        delayOnTouchOnly: true, 
         onEnd: function (evt) {
             const orderedIds = [];
             tabela.querySelectorAll('tbody tr.tarefa').forEach((linha) => {
@@ -107,7 +109,7 @@
                 },
                 body: JSON.stringify({ order: orderedIds }),
             })
-            .then((response) => response.json())
+            .then((response) => response.json());
         },
     });
 </script>
